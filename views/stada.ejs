@@ -1,5 +1,18 @@
 <%- include('header') -%>
 
-<h1>Staðan í deildinni</h1>
+<table class="teams">
+  <thead>
+    <tr>
+      <th>Lið</th>
+      <th>Stig</th>
+    </tr>
+  </thead>
+  <% for(let i = 0; i < teams.length; i++) { %>
+  <tr class="team">
+    <td><%= locals.teams[i].name %></td>
+    <td><%= locals.teams[i].score %></td>
+  </tr>
+  <% } %>
+</table>
 
 <%- include('footer') -%>

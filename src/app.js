@@ -69,6 +69,7 @@ passport.serializeUser((user, done) => {
 });
 
 // Sækir notanda út frá id
+
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await findById(id);
@@ -77,6 +78,7 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
+
 
 // Látum express nota passport með session
 app.use(passport.initialize());

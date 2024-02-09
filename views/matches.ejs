@@ -1,0 +1,27 @@
+<table class="matches">
+  <thead>
+    <tr>
+      <th class="date-head">Dagsetning</th>
+      <th>Heimalið</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Útilið</th>
+    </tr>
+  </thead>
+  <% for(const match of locals.matches){ %>
+    <tr class="small-screen">
+        <td colspan="6" >
+        <span>Dagsetning:</span> <%= match.date %>
+        </td>
+    </tr>
+    <tr class="match">
+        <td class="no-border date"><%= match.date %></td>
+        <td><%= match.home_team %></td>
+        <td class=<%= (match.home_score > match.away_score) ? 'green' : (match.away_score > match.home_score) ? 'red' : 'yellow' %>><%= match.home_score %></td>
+        <td class="no-border versus">VS</td>
+        <td class=<%= (match.away_score > match.home_score) ? 'green' : (match.home_score > match.away_score) ? 'red' : 'yellow' %>><%= match.away_score %></td>
+        <td><%= match.away_team %></td>
+      </tr>
+  <% } %>
+</table>

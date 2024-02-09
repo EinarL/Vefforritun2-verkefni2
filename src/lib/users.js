@@ -6,31 +6,10 @@
  */
 
 import bcrypt from 'bcrypt';
-
-const records = [
-  {
-    id: 1,
-    username: 'admin',
-    name: 'Hr. admin',
-
-    // 123
-    password: '$2a$11$pgj3.zySyFOvIQEpD7W6Aund1Tw.BFarXxgLJxLbrzIv/4Nteisii',
-    admin: true,
-  },
-  {
-    id: 2,
-    username: 'oli',
-    name: 'Óli',
-
-    // 123
-    password: '$2a$11$pgj3.zySyFOvIQEpD7W6Aund1Tw.BFarXxgLJxLbrzIv/4Nteisii',
-    admin: false,
-  },
-];
+import { getUserInfo, getUserByID } from './database.js';
 
 export async function comparePasswords(password, user) {
   const ok = await bcrypt.compare(password, user.password);
-
   if (ok) {
     return user;
   }
@@ -38,26 +17,28 @@ export async function comparePasswords(password, user) {
   return false;
 }
 
-// Merkjum sem async þó ekki verið að nota await, þar sem þetta er notað í
-// app.js gerir ráð fyrir async falli
+/**
+ * @param {String} username
+ * @returns {Promise<object>} null ef notandi er ekki til, annars object {id: id, username: notendanafn, password: hashed_password}
+ */
 export async function findByUsername(username) {
-  const found = records.find((u) => u.username === username);
-
-  if (found) {
-    return found;
-  }
-
-  return null;
+  return await getUserInfo(username);
 }
 
-// Merkjum sem async þó ekki verið að nota await, þar sem þetta er notað í
-// app.js gerir ráð fyrir async falli
+/**
+ * @param {*} id
+ * @returns {Promise<object>} null ef notandi með id er ekki til, annars object {id: id, username: notendanafn, password: hashed_password}
+ */
 export async function findById(id) {
-  const found = records.find((u) => u.id === id);
+  return await getUserByID(id);
+}
 
-  if (found) {
-    return found;
+// Hjálpar middleware sem athugar hvort notandi sé innskráður og hleypir okkur
+// þá áfram, annars sendir á /login
+export function ensureLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
   }
 
-  return null;
+  return res.redirect('/login');
 }

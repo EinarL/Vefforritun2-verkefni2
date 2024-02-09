@@ -3,23 +3,54 @@
 
 <head>
   <meta charset="utf-8">
-  <title><%= locals.title ?? '' %></title>
+  <title><%= locals.title == 'Knattspyrnudeildin' ? 'Knattspyrnudeildin' : 'Knattspyrnudeildin | ' + locals.title  %></title>
   <link rel="stylesheet" href="/styles.css">
+  <% if (locals.title == 'Knattspyrnudeildin') { %>
+    <link rel="stylesheet" href="/index.css">
+  <% } %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    function openSidebar(){
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'flex';
+    }
+
+    function closeSidebar(){
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'none';
+    }
+  </script>
 </head>
 
 <body>
+  <header>
+    <nav>
+      <ul class="sidebar">
+        <li onclick="closeSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+        <li><a href="/">Forsíða</a></li>
+        <li><a href="/leikir">Leikir</a></li>
+        <li><a href="/stada">Staða</a></li>
+        <% if (locals.loggedIn) { %>
+          <li><a href="/admin">Admin</a></li>
+        <% } %>
+      </ul>
+      <ul class="navbar">
+        <li onclick="openSidebar()" class="svg-image show-on-mobile"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a></li>
+        <li class="hide-on-mobile"><a href="/">Forsíða</a></li>
+        <li class="hide-on-mobile"><a href="/leikir">Leikir</a></li>
+        <li class="hide-on-mobile"><a href="/stada">Staða</a></li>
+        <% if (locals.loggedIn) { %>
+          <li class="hide-on-mobile"><a href="/admin">Admin</a></li>
+        <% } %>
+      </ul>
+    </nav>
+    <% if (locals.loggedIn) { %>
+      <p class="user-text">Velkomin(n) <%= locals.user.username %>. <a href="/TODO">Útskráning</a>
+    <% } else { %>
+      <p class="user-text">Þú ert ekki innskráður notandi. <a href="/admin">Innskráning</a></p>
+    <% } %>
+  </header>
   <main>
-
     <h1><%= locals.title ?? '' %></h1>
 
-    <% if (locals.loggedIn) { %>
-      <p>Innsrkáður notandi: <%= locals.user.name %> (<%= locals.user.username %>)
-    <% } else { %>
-      <p>Þú ert ekki innskráður notandi.</p>
-    <% } %>
 
-    <ul>
-      <li><a href="/">Forsíða</a></li>
-      <li><a href="/leikir">Leikir</a></li>
-      <li><a href="/stada">Staða</a></li>
-    </ul>

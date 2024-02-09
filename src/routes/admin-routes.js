@@ -1,5 +1,8 @@
 import express from 'express';
 import passport from 'passport';
+import { ensureLoggedIn } from '../lib/users.js';
+import { getMatches } from '../lib/matches.js';
+import { getGamesWithTeamNames } from '../lib/database.js';
 
 export const adminRouter = express.Router();
 
@@ -14,21 +17,11 @@ async function adminRoute(req, res) {
   const loggedIn = req.isAuthenticated();
 
   return res.render('admin', {
-    title: 'Admin upplýsingar, mjög leynilegt',
+    title: 'Admin síða',
+    matches: getMatches(await getGamesWithTeamNames()),
     user,
     loggedIn,
   });
-}
-
-// TODO færa á betri stað
-// Hjálpar middleware sem athugar hvort notandi sé innskráður og hleypir okkur
-// þá áfram, annars sendir á /login
-function ensureLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-
-  return res.redirect('/login');
 }
 
 adminRouter.get('/login', indexRoute);

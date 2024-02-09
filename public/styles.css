@@ -1,3 +1,294 @@
+* {
+  box-sizing: border-box;
+  background-color: #24252A; /* #f5f5f5 */
+  color: #ecf0f1;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 html {
-  background-color: #f5f5f5;
+  margin: 0 10%;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+}
+
+header ul {
+  list-style:none;
+  display: flex;
+  justify-content: space-around;
+  gap: 100px;
+  margin: 0;
+}
+
+nav li {
+  height: 50px;
+}
+
+nav a {
+  height: 100%;
+  padding: 0 30px 2px 30px;
+  display: flex;
+  align-items: center;
+}
+
+header ul a{
+  text-decoration:none;
+  transition: all 0.3s ease 0s;
+  border-radius: 0 0 10px 10px;
+}
+
+header ul li a:hover{
+  color: #0088a9;
+  background-color: rgb(66, 66, 66);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 150px;
+  z-index: 999;
+  background-color: rgba(0,0,0,0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.6),
+             -140px 5px 10px rgba(0,0,0,0.6);
+  border-radius: 0 0 10px 0;
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0;
+}
+
+.sidebar * {
+  background-color: transparent;
+}
+
+.sidebar a{
+  border-radius: 0;
+}
+
+.sidebar li:last-child a{
+  border-radius: 0 0 10px 0;
+}
+
+.sidebar li a:hover{
+  background-color: rgba(66, 66, 66, 0.4);
+}
+
+.svg-image:hover svg{
+  background-color: rgba(66, 66, 66, 0.4);
+  fill: #0088a9;
+}
+
+svg {
+  transition: all 0.3s ease 0s;
+  fill: white;
+}
+
+.show-on-mobile {
+  display: none;
+}
+
+.teams {
+  border-collapse: collapse;
+  font-size: 25px;
+  width: 100%;
+  margin: 0 10px;
+}
+
+.teams thead{
+  border-bottom: 3px solid white;
+}
+
+.teams tr :nth-child(1){
+  text-align: left;
+  padding-left: 5px;
+}
+
+.teams tr :nth-child(2){
+  text-align: right;
+  padding-right: 5px;
+}
+
+.teams td {
+  padding: 5px 10px;
+}
+
+.team {
+  border-bottom: 2px solid grey;
+}
+
+/* matches.ejs */
+.small-screen {
+  display: none;
+}
+
+.matches .small-screen td {
+  border: none;
+}
+
+.matches {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.matches td {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  text-align: center;
+  width: auto;
+  overflow-x: auto;
+}
+
+table th {
+  text-align: center;
+  width: auto;
+}
+
+.date-head {
+  text-align: left;
+  padding-left: 25px;
+}
+
+.matches .no-border {
+  border: none;
+  text-align: left;
+}
+
+.matches .versus{
+  font-weight: bold;
+  text-align: center;
+}
+
+.red {
+  color: black;
+  background-color: rgb(211, 0, 0);
+  font-weight: bold;
+}
+
+.green {
+  color: black;
+  background-color: rgb(0, 155, 0);
+  font-weight: bold;
+}
+
+.yellow {
+  color: black;
+  background-color: rgb(207, 207, 0);
+  font-weight: bold;
+}
+
+.date{
+  padding: 0;
+  padding-right: -10px;
+  margin-right: -10px;
+}
+
+/* admin.ejs */
+.add-match {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.add-match fieldset {
+  border-width: 3px;
+  border-radius: 10px;
+}
+
+.add-match * {
+  padding: 5px;
+  margin: 5px 0 5px 3px;
+}
+
+.row{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.row label:last-child {
+  margin-left: auto;
+}
+
+.second-row label:last-child {
+  margin-right: 18%;
+}
+
+.add-match input{
+  background-color: rgb(221, 221, 221);
+  color: black;
+}
+
+.add-match input[type="number"] {
+  width: 50px;
+}
+
+
+@media (max-width: 1300px) {
+  header ul {
+    gap: 50px;
+    padding: 0;
+  }
+}
+
+@media (max-width: 1080px) {
+  header ul {
+    gap: 0;
+  }
+}
+
+
+@media (max-width: 825px) {
+  html {
+    margin: 0;
+  }
+
+  .user-text {
+    margin-right: 20px;
+  }
+}
+
+/* make header be a button */
+@media (max-width: 630px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .show-on-mobile {
+    display: block;
+  }
+}
+
+
+@media (max-width: 605px) {
+  .small-screen {
+    display: table-row;
+  }
+
+  /* Hide the first column */
+  .matches .match td:first-child,
+  .matches th:first-child {
+    display: none;
+  }
+}
+
+
+@media (max-width: 460px) {
+  html {
+    margin: 0;
+  }
 }

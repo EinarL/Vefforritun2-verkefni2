@@ -1,5 +1,22 @@
 <%- include('header') -%>
 
-admin!
+
+<form class="add-match" method="post" action="/admin" autocomplete="off">
+  <fieldset>
+    <legend>Bæta við nýjum leik:</legend>
+    <label>Dagsetning: <input type="datetime-local" name="date"></label>
+    <div class="row">
+      <label>Heimalið: <input type="text" name="home"></label>
+      <label>Útilið: <input type="text" name="away"></label>
+    </div>
+    <div class="row second-row">
+      <label>Stig Heimaliðs: <input type="number" name="home_score"></label>
+      <label>Stig Útiliðs: <input type="number" name="away_score"></label>
+    </div>
+    <button>Skrá leik</button>
+  </fieldset>
+</form>
+
+<%- include('matches') -%>
 
 <%- include('footer') -%>

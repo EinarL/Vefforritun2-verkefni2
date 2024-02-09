@@ -31,4 +31,9 @@ module.exports = {
       },
     ],
   },
+  'overrides': [
+    {
+      'excludedFiles': '*.ejs',
+    }
+  ]
 };
