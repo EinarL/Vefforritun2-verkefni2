@@ -13,10 +13,26 @@
       <label>Stig Heimaliðs: <input type="number" name="home_score"></label>
       <label>Stig Útiliðs: <input type="number" name="away_score"></label>
     </div>
-    <button>Skrá leik</button>
+    <div class="last-row">
+      <button>Skrá leik</button>
+      <% if (locals.errorMessage) { %>
+        <p id="error-message"><%= locals.errorMessage %></p>
+      <% } else if (locals.message) { %>
+        <p id="success-message"><%= locals.message %></p>
+      <% } %>
+    </div>
   </fieldset>
 </form>
 
+<script>
+  // to remove the error/success message after 3 seconds
+  setTimeout(() => {
+    const errorMsg = document.getElementById('error-message');
+    const successMsg = document.getElementById('success-message');
+    if(errorMsg) errorMsg.style.display = 'none';
+    if(successMsg) successMsg.style.display = 'none';
+  }, 3000);
+</script>
 <%- include('matches') -%>
 
 <%- include('footer') -%>

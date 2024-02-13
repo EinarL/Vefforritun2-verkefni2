@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { doesTeamExist, addMatchToDatabase } from './database.js';
 
 /**
  * Match object with the names and scores for the two teams that participated in the match.
@@ -80,4 +81,53 @@ export function getMatches(matches){
   }
 
   return matches;
+}
+
+/**
+ * Adds a new match to the database if the input is valid.
+ * @param {*} date
+ * @param {*} home
+ * @param {*} away
+ * @param {*} home_score
+ * @param {*} away_score
+ * @returns an error message if the input is invalid, returns nothing otherwise
+ */
+export async function addMatch(date, home, away, home_score, away_score){
+  const dateTime = new Date(date);
+  let dateNow = new Date();
+  if (dateTime > dateNow){
+    return `Dagsetningin getur ekki verið í framtíðinni`;
+  }
+
+  const twoMonthsAgo = new Date(dateNow.setMonth(dateNow.getMonth() - 2));
+  if (dateTime < twoMonthsAgo){
+    return `Dagsetningin getur ekki verið eldri en tveir mánuðir`;
+  }
+
+  if (!await doesTeamExist(home)) return 'Heimalið er ekki til';
+  if (!await doesTeamExist(away)) return 'Útilið er ekki til';
+
+  const home_num = Number(home_score);
+  const away_num = Number(away_score);
+  if(!Number.isInteger(home_num) || !Number.isInteger(away_num) || home_num < 0 || away_num < 0){
+    return 'Stig liðanna verða að vera jákvæð heiltala eða 0';
+  }
+
+  const errorMessage = addMatchToDatabase(formatDate(dateTime), home, away, home_score, away_score);
+  if(errorMessage) return errorMessage;
+}
+
+/**
+ * @param {Date} date
+ * @returns {string} returns the date as a string in the form of: yyyy-mm-dd hh:mm:ss
+ */
+function formatDate(date){
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const seconds = String(date.getSeconds()).padStart(2, '0');
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }

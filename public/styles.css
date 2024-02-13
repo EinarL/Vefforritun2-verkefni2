@@ -228,6 +228,14 @@ table th {
   margin-right: 18%;
 }
 
+.last-row {
+  display: flex;
+}
+
+.last-row p:last-child {
+  margin-left: 10%;
+}
+
 .add-match input{
   background-color: rgb(221, 221, 221);
   color: black;
@@ -237,6 +245,13 @@ table th {
   width: 50px;
 }
 
+#error-message {
+  color: red;
+}
+
+#success-message {
+  color: green;
+}
 
 @media (max-width: 1300px) {
   header ul {
@@ -259,6 +274,10 @@ table th {
 
   .user-text {
     margin-right: 20px;
+  }
+
+  .teams{
+    width: 95%;
   }
 }
 
@@ -283,6 +302,21 @@ table th {
   .matches .match td:first-child,
   .matches th:first-child {
     display: none;
+  }
+}
+
+@media (max-width: 570px) {
+  .row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .row label:last-child {
+    margin-left: 0;
+  }
+
+  .second-row label:last-child {
+    margin-right: 0;
   }
 }
 

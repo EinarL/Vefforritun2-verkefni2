@@ -45,7 +45,7 @@
       </ul>
     </nav>
     <% if (locals.loggedIn) { %>
-      <p class="user-text">Velkomin(n) <%= locals.user.username %>. <a href="/TODO">Útskráning</a>
+      <p class="user-text">Velkomin(n) <%= locals.user.username %>. <a href="/logout">Útskráning</a>
     <% } else { %>
       <p class="user-text">Þú ert ekki innskráður notandi. <a href="/admin">Innskráning</a></p>
     <% } %>

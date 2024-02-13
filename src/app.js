@@ -1,6 +1,7 @@
 import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
+import flash from 'flash';
 import { Strategy } from 'passport-local';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
@@ -69,7 +70,6 @@ passport.serializeUser((user, done) => {
 });
 
 // Sækir notanda út frá id
-
 passport.deserializeUser(async (id, done) => {
   try {
     const user = await findById(id);
@@ -83,6 +83,7 @@ passport.deserializeUser(async (id, done) => {
 // Látum express nota passport með session
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/', adminRouter);
