@@ -36,7 +36,7 @@ nav li {
 
 nav a {
   height: 100%;
-  padding: 0 30px 2px 30px;
+  padding: 0 30px 2px;
   display: flex;
   align-items: center;
 }
@@ -47,9 +47,13 @@ header ul a{
   border-radius: 0 0 10px 10px;
 }
 
+.sidebar a{
+  border-radius: 0;
+}
+
 header ul li a:hover{
   color: #0088a9;
-  background-color: rgb(66, 66, 66);
+  background-color: rgb(66 66 66);
 }
 
 .sidebar {
@@ -58,11 +62,11 @@ header ul li a:hover{
   left: 0;
   width: 150px;
   z-index: 999;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0 0 0 / 10%);
   backdrop-filter: blur(10px);
-  box-shadow: 5px 5px 10px rgba(0,0,0,0.6),
-             -140px 5px 10px rgba(0,0,0,0.6);
-  border-radius: 0 0 10px 0;
+  box-shadow: 5px 5px 10px rgba(0 0 0 / 60%),
+             -140px 5px 10px rgba(0 0 0 / 60%);
+  border-radius: 0 0 10px;
   display: none;
   flex-direction: column;
   justify-content: flex-start;
@@ -73,26 +77,22 @@ header ul li a:hover{
   background-color: transparent;
 }
 
-.sidebar a{
-  border-radius: 0;
-}
-
 .sidebar li:last-child a{
-  border-radius: 0 0 10px 0;
+  border-radius: 0 0 10px;
 }
 
 .sidebar li a:hover{
-  background-color: rgba(66, 66, 66, 0.4);
-}
-
-.svg-image:hover svg{
-  background-color: rgba(66, 66, 66, 0.4);
-  fill: #0088a9;
+  background-color: rgba(66 66 66 / 40%);
 }
 
 svg {
   transition: all 0.3s ease 0s;
   fill: white;
+}
+
+.svg-image:hover svg{
+  background-color: rgba(66 66 66 / 40%);
+  fill: #0088a9;
 }
 
 .show-on-mobile {
@@ -133,6 +133,14 @@ svg {
   display: none;
 }
 
+.matches td {
+  border: 1px solid grey;
+  padding: 0.5rem;
+  text-align: center;
+  width: auto;
+  overflow-x: auto;
+}
+
 .matches .small-screen td {
   border: none;
 }
@@ -143,14 +151,6 @@ svg {
   overflow-y: auto;
   width: 100%;
   max-width: 100%;
-}
-
-.matches td {
-  border: 1px solid grey;
-  padding: 0.5rem;
-  text-align: center;
-  width: auto;
-  overflow-x: auto;
 }
 
 table th {
@@ -175,19 +175,19 @@ table th {
 
 .red {
   color: black;
-  background-color: rgb(211, 0, 0);
+  background-color: rgb(211 0 0);
   font-weight: bold;
 }
 
 .green {
   color: black;
-  background-color: rgb(0, 155, 0);
+  background-color: rgb(0 155 0);
   font-weight: bold;
 }
 
 .yellow {
   color: black;
-  background-color: rgb(207, 207, 0);
+  background-color: rgb(207 207 0);
   font-weight: bold;
 }
 
@@ -237,7 +237,7 @@ table th {
 }
 
 .add-match input{
-  background-color: rgb(221, 221, 221);
+  background-color: rgb(221 221 221);
   color: black;
 }
 

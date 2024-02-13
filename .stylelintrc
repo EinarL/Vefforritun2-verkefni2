@@ -3,6 +3,6 @@
     "stylelint-config-standard"
   ],
   "rules": {
-    "media-feature-range-notation": false
+    "media-feature-range-notation": null
   }
 }

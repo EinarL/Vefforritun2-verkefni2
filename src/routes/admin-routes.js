@@ -53,9 +53,9 @@ adminRouter.get('/logout', (req, res) => {
 
 // runs when trying to add a new match to the database
 adminRouter.post('/admin', ensureLoggedIn,  async (req, res) => {
-  const { date, home, away, home_score, away_score } = req.body; // get info about the match
+  const { date, home, away, homeScore, awayScore } = req.body; // get info about the match
   // add the match to the database, this returns an error message if it didn't work
-  const errorMessage = await addMatch(date, home, away, home_score, away_score);
+  const errorMessage = await addMatch(date, home, away, homeScore, awayScore);
 
   const user = req.user ?? null;
   const loggedIn = req.isAuthenticated();
