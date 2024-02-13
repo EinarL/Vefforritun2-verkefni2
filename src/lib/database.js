@@ -4,12 +4,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sql = postgres({
+  host: process.env.DATABASE_URL,
+  user: process.env.DB_USER,
+  port: 5432,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+})
+
+/**
+const sql = postgres({
   host: 'localhost',
   user: 'postgres',
   port: 5432,
   password: process.env.DB_PASSWORD,
   database: 'vfor2verkefni2'
 })
+ */
 
 
 export async function getTeams() {
