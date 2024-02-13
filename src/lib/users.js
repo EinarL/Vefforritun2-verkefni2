@@ -22,7 +22,7 @@ export async function comparePasswords(password, user) {
  * @returns {Promise<object>} null ef notandi er ekki til, annars object {id: id, username: notendanafn, password: hashed_password}
  */
 export async function findByUsername(username) {
-  return await getUserInfo(username);
+  return getUserInfo(username);
 }
 
 /**
@@ -30,7 +30,7 @@ export async function findByUsername(username) {
  * @returns {Promise<object>} null ef notandi með id er ekki til, annars object {id: id, username: notendanafn, password: hashed_password}
  */
 export async function findById(id) {
-  return await getUserByID(id);
+  return getUserByID(id);
 }
 
 // Hjálpar middleware sem athugar hvort notandi sé innskráður og hleypir okkur

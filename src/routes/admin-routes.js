@@ -45,7 +45,7 @@ adminRouter.post(
 
 adminRouter.get('/logout', (req, res) => {
   req.logout((err) => {
-    if(err) console.warn('error logging out: ' + err);
+    if(err) console.warn('error logging out:', err);
 
     res.redirect('/');
   });

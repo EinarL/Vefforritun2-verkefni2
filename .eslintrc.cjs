@@ -13,6 +13,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'import/no-extraneous-dependencies': 0,
     'no-param-reassign': 0,
+    'consistent-return': 0,
     quotes: ['error', 'single'],
     'no-console': [
       'warn',
@@ -33,6 +34,7 @@ module.exports = {
   },
   'overrides': [
     {
+      'files': ['*.js'],
       'excludedFiles': '*.ejs',
     }
   ]

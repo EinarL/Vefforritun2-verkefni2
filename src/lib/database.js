@@ -1,13 +1,14 @@
 import postgres from 'postgres';
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const sql = postgres({
-  host: "localhost",
-  user: "postgres",
+  host: 'localhost',
+  user: 'postgres',
   port: 5432,
   password: process.env.DB_PASSWORD,
-  database: "vfor2verkefni2"
+  database: 'vfor2verkefni2'
 })
 
 
@@ -64,22 +65,22 @@ async function getTeamID(team){
 }
 /**
  * @param {string} date
- * @param {string} home_name
- * @param {string} away_name
- * @param {number} home_score
- * @param {number} away_score
+ * @param {string} homeName
+ * @param {string} awayName
+ * @param {number} homeScore
+ * @param {number} awayScore
  * @returns returns an error message if there is an error with adding the match to the database
  */
-export async function addMatchToDatabase(date, home_name, away_name, home_score, away_score){
-  const home_id = await getTeamID(home_name);
-  const away_id = await getTeamID(away_name);
+export async function addMatchToDatabase(date, homeName, awayName, homeScore, awayScore){
+  const homeID = await getTeamID(homeName);
+  const awayID = await getTeamID(awayName);
 
   try {
     await sql`INSERT INTO games (date, home, away, home_score, away_score)
-          VALUES (${date},${home_id},${away_id},${home_score},${away_score})`;
+          VALUES (${date},${homeID},${awayID},${homeScore},${awayScore})`;
   } catch (err) {
     console.error('Error adding match to the database:', err);
-    return 'Það náðist ekki að bæta við leiknum við gagnagrunninn';
+    return 'Það náðist ekki að bæta leiknum við gagnagrunninn';
   }
 
 }
