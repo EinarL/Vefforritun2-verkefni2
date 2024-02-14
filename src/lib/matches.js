@@ -111,6 +111,9 @@ function formatDate(date){
 export async function addMatch(date, home, away, homeScore, awayScore){
   const dateTime = new Date(date);
   const dateNow = new Date();
+  if(!date){
+    return 'Þú verður að velja dagsetningu';
+  }
   if (dateTime > dateNow){
     return 'Dagsetningin getur ekki verið í framtíðinni';
   }
